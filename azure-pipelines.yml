@@ -21,34 +21,41 @@ steps:
 - task: NuGetToolInstaller@1
   displayName: 'Install NuGet'
 
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: '**/*.sln'
 
-- task: VSBuild@1
-  displayName: 'Build solution'
-  inputs:
-    solution: '**/*.sln'
-    configuration: '$(buildConfiguration)'
+- task: script
+  script: |
+    dotnet restore
+    dotnet build
 
-- task: NuGetCommand@2
-  displayName: 'NuGet pack'
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'nugetPackageVersion'
-    buildProperties: 'PackageVersion=$(nugetPackageVersion)'
 
-- task: NuGetAuthenticate@0
-  displayName: 'NuGet Authenticate'
+# - task: NuGetCommand@2
+#   displayName: 'NuGet restore'
+#   inputs:
+#     restoreSolution: '**/*.sln'
 
-- task: NuGetCommand@2
-  displayName: 'NuGet push'
-  inputs:
-    command: 'push'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'lab-tst'  # Replace this with your Azure DevOps Artifact feed name
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    allowPackageConflicts: true
+# - task: VSBuild@1
+#   displayName: 'Build solution'
+#   inputs:
+#     solution: '**/*.sln'
+#     configuration: '$(buildConfiguration)'
+
+# - task: NuGetCommand@2
+#   displayName: 'NuGet pack'
+#   inputs:
+#     command: 'pack'
+#     packagesToPack: '**/*.csproj'
+#     versioningScheme: 'byEnvVar'
+#     versionEnvVar: 'nugetPackageVersion'
+#     buildProperties: 'PackageVersion=$(nugetPackageVersion)'
+
+# - task: NuGetAuthenticate@0
+#   displayName: 'NuGet Authenticate'
+
+# - task: NuGetCommand@2
+#   displayName: 'NuGet push'
+#   inputs:
+#     command: 'push'
+#     nuGetFeedType: 'internal'
+#     publishVstsFeed: 'lab-tst'  # Replace this with your Azure DevOps Artifact feed name
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+#     allowPackageConflicts: true
