@@ -21,11 +21,10 @@ steps:
 - task: NuGetToolInstaller@1
   displayName: 'Install NuGet'
 
-
-- task: script
-  script: |
+- script: |
     dotnet restore
     dotnet build
+  displayName: build and deploy
 
 
 # - task: NuGetCommand@2
