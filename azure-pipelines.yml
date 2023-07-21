@@ -47,6 +47,12 @@ steps:
 #     versionEnvVar: 'nugetPackageVersion'
 #     buildProperties: 'PackageVersion=$(nugetPackageVersion)'
 
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: firstrelease
+
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
 
