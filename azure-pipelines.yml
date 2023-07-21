@@ -11,40 +11,44 @@ pool:
   name: "Default"
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  versionMajor: 1
+  versionMinor: 0
+  versionPatch: $[counter(variables['versionPatch'], 0)]
+  nugetPackageVersion: '$(versionMajor).$(versionMinor).$(versionPatch)'
 
 steps:
 - task: NuGetToolInstaller@1
+  displayName: 'Install NuGet'
 
 - task: NuGetCommand@2
+  displayName: 'NuGet restore'
   inputs:
-    restoreSolution: '$(solution)'
+    restoreSolution: '**/*.sln'
 
 - task: VSBuild@1
+  displayName: 'Build solution'
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
+    solution: '**/*.sln'
     configuration: '$(buildConfiguration)'
 
 - task: NuGetCommand@2
+  displayName: 'NuGet pack'
   inputs:
-    command: pack
+    command: 'pack'
     packagesToPack: '**/*.csproj'
-    packDestination: '$(Build.ArtifactStagingDirectory)'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'nugetPackageVersion'
+    buildProperties: 'PackageVersion=$(nugetPackageVersion)'
 
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
+
 - task: NuGetCommand@2
   displayName: 'NuGet push'
   inputs:
-    command: push
-    publishVstsFeed: amuham47/lab-test'
+    command: 'push'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'lab-tst'  # Replace this with your Azure DevOps Artifact feed name
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
     allowPackageConflicts: true
