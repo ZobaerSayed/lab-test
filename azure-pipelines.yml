@@ -23,7 +23,7 @@ steps:
 
 - script: |
     dotnet restore
-    dotnet build
+    dotnet build --configuration Release
   displayName: build and deploy
 
 
@@ -47,14 +47,11 @@ steps:
 #     versionEnvVar: 'nugetPackageVersion'
 #     buildProperties: 'PackageVersion=$(nugetPackageVersion)'
 
-# - task: NuGetAuthenticate@0
-#   displayName: 'NuGet Authenticate'
+- task: NuGetAuthenticate@0
+  displayName: 'NuGet Authenticate'
 
-# - task: NuGetCommand@2
-#   displayName: 'NuGet push'
-#   inputs:
-#     command: 'push'
-#     nuGetFeedType: 'internal'
-#     publishVstsFeed: 'lab-tst'  # Replace this with your Azure DevOps Artifact feed name
-#     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-#     allowPackageConflicts: true
+- task: NuGetCommand@2
+  displayName: 'NuGet push'
+  inputs:
+    PathToPublish: "amuham47/lab-tes"
+    ArtifactName: "firstrelease"
