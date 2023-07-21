@@ -53,5 +53,5 @@ steps:
 - task: NuGetCommand@2
   displayName: 'NuGet push'
   inputs:
-    PathToPublish: "amuham47/lab-tes"
+    PathToPublish: "amuham47/lab-tst"
     ArtifactName: "firstrelease"
