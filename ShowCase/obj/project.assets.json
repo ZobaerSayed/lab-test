@@ -39,6 +39,7 @@
       "outputPath": "C:\\Users\\abuzo\\source\\repos\\StringLibrary\\ShowCase\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
+        "C:\\Users\\abuzo\\source\\repos\\StringLibrary\\NuGet.Config",
         "C:\\Users\\abuzo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -46,7 +47,6 @@
         "net7.0"
       ],
       "sources": {
-        "https://packagesource": {},
         "https://pkgs.dev.azure.com/amuham47/lab-test/_packaging/lab-tst/nuget/v3/index.json": {}
       },
       "frameworks": {
