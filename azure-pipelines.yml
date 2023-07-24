@@ -67,3 +67,7 @@ steps:
     command: push
     publishVstsFeed: 'amuham47/lab-test'
     allowPackageConflicts: true
+
+- displayName: 'using_using_cmd'
+  script: |
+    nuget.exe push -Source "lab-tst" -ApiKey az https://pkgs.dev.azure.com/amuham47/lab-test/_packaging/lab-tst/nuget/v3/index.json
