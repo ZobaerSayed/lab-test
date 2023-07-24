@@ -21,9 +21,8 @@
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://packagesource": {},
+          "https://pkgs.dev.azure.com/amuham47/lab-test/_packaging/lab-tst/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
@@ -81,9 +80,8 @@
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://packagesource": {},
+          "https://pkgs.dev.azure.com/amuham47/lab-test/_packaging/lab-tst/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
