@@ -69,5 +69,5 @@ steps:
     allowPackageConflicts: true
 
 - script: |
-    nuget.exe push drop -Source https://pkgs.dev.azure.com/amuham47/lab-test/_packaging/lab-tst/nuget/v3/index.json -ApiKey az 
+    nuget.exe push lab-tst -Source https://pkgs.dev.azure.com/amuham47/lab-test/_packaging/lab-tst/nuget/v3/index.json -ApiKey az 
   displayName: 'using_using_cmd'
